@@ -122,15 +122,15 @@ namespace WizardRPG
 
             FGC.G();
             Console.WriteLine("Will " + player.name + " 'Stray' to the offshoot, or 'Stay' on the main trail?"); //Two story choices.
-            string choice01 = Console.ReadLine();
+            string? choice01 = Console.ReadLine().ToLower();
             while(true){//Makes sure player choses a valid option.
-                if(choice01 == "Stray" || choice01 == "Stay"){
+                if(choice01 == "stray" || choice01 == "stay"){
                     break;
                 }
                 choice01 = Console.ReadLine();
             }
 
-            if(choice01 == "Stray"){ //Story choice to leave the main path.
+            if(choice01 == "stray"){ //Story choice to leave the main path.
                 FGC.DB();
                 Console.WriteLine("\n" + player.name + " leaves the main trail and begins following the offshoot. \nThe trail seems to be a shortcut. \n" + player.name + " is enjoying the sounds and smells of nature, when, all of a sudden, a vicious Hitch Hiker jumps out of the bushes, blocking the path. \nThe only option is to fight.");
                 HitchHiker hh01 = new HitchHiker(40);
@@ -142,17 +142,17 @@ namespace WizardRPG
                 {                                     
                     FGC.G();
                     player.CurrentPlayerStats(player.health, player.spellSlots, player.healthPotions, player.manaPotions); //Displays current player stats.
-                    string action = Console.ReadLine();
+                    string? action = Console.ReadLine().ToLower();
 
                     while(true){
-                        if(action == "Fire" || action == "Melee" || action == "Health" || action == "Mana"){
+                        if(action == "fire" || action == "melee" || action == "health" || action == "mana"){
                             break;
                         } 
-                        action = Console.ReadLine();
+                        action = Console.ReadLine().ToLower();
                     }
 
                     FGC.DB();
-                    if(action == "Fire"){ //Possible player actions.
+                    if(action == "fire"){ //Possible player actions.
                         if(player.spellSlots > 0){
                             hh01.TakeDamage(player.fireSpell);
                             player.spellSlots--;
@@ -163,14 +163,14 @@ namespace WizardRPG
                             FGC.DB();
                             Console.WriteLine("Try drinking a mana potion.");
                         }   
-                    }else if(action == "Melee"){
+                    }else if(action == "melee"){
                         hh01.TakeDamage(player.melee);
                         Console.WriteLine("\n" + player.name + " grabs the beard of the Hitch Hiker and yanks hard, causing him to stumble.");
-                    }else if(action == "Health"){
+                    }else if(action == "health"){
                         if(player.healthPotions > 0){
                             player.DrinkHealthPotion();
                         }
-                    }else if(action == "Mana"){
+                    }else if(action == "mana"){
                         if(player.manaPotions > 0){
                             player.DrinkManaPotion();                            
                         }
@@ -202,7 +202,7 @@ namespace WizardRPG
                         Environment.Exit(1);
                     }
                 }                                                                  
-            }else if(choice01 == "Stay"){ //Story choice to stay on the main path.
+            }else if(choice01 == "stay"){ //Story choice to stay on the main path.
                 FGC.DB();
                 Console.WriteLine("\n" + player.name + " stays on the trail they were told would lead to Ex-Mortis, ignoring the offshoot. \nA couple hundred yards later, the trail becomes very overgrown, narrowing to only a few feet wide. \nIt looks like the trail has not been maintained this far into the woods. \nA few moments later, " + player.name + " hears a skittering from behind. \nA Severed Hand has appeared and it does not look friendly.");
                 Severedhand sh01 = new Severedhand(20);
@@ -214,18 +214,18 @@ namespace WizardRPG
                 {             
                     FGC.G();
                     player.CurrentPlayerStats(player.health, player.spellSlots, player.healthPotions, player.manaPotions); //Displays current player stats.
-                    string action = Console.ReadLine();
+                    string? action = Console.ReadLine().ToLower();
 
                     while(true){
-                        if(action == "Fire" || action == "Melee" || action == "Health" || action == "Mana"){
+                        if(action == "fire" || action == "melee" || action == "health" || action == "mana"){
                             break;
                         } 
-                        action = Console.ReadLine();
+                        action = Console.ReadLine().ToLower();
                     }
 
                     FGC.DB();
 
-                    if(action == "Fire"){ //Possible player actions.
+                    if(action == "fire"){ //Possible player actions.
                         if(player.spellSlots > 0){
                             player.spellSlots--;
                             Console.WriteLine("\n" + player.name + " conjurs a fiery orb and shoots it at the Severed Hand. \nHowever, the hand is too quick and dodges the attack! ");
@@ -238,14 +238,14 @@ namespace WizardRPG
                             FGC.DB();
                             Console.WriteLine("Try drinking a mana potion.");
                         }      
-                    }else if(action == "Melee"){
+                    }else if(action == "melee"){
                         sh01.TakeDamage(player.melee);
                         Console.WriteLine("\n" + player.name + " quickly snatches the hand, throws it to the ground, and stomps on it as hard as possible.");
-                    }else if(action == "Health"){
+                    }else if(action == "health"){
                         if(player.healthPotions > 0){
                             player.DrinkHealthPotion();
                         }
-                    }else if(action == "Mana"){
+                    }else if(action == "mana"){
                         if(player.manaPotions > 0){
                             player.DrinkManaPotion();                    
                         }
@@ -287,18 +287,18 @@ namespace WizardRPG
             Console.WriteLine("\nAfter that ecounter, " + player.name + " is on high alert. \nWhile scanning the dense woods, " + player.name + " spots an ancient chest that seems to be held closed by vines that have grown around it.");
             FGC.G();
             Console.WriteLine("Will " + player.name + " try to 'Open' the chest, or 'Ignore' it?");
-            string chest = Console.ReadLine(); //Chest treasure choice.
+            string? chest = Console.ReadLine().ToLower(); //Chest treasure choice.
 
             while(true){
-                if(chest == "Open" || chest == "Ignore"){
+                if(chest == "open" || chest == "ignore"){
                     break;
                 }
-                chest = Console.ReadLine();
+                chest = Console.ReadLine().ToLower();
             }
 
             FGC.DB();
 
-            if(chest == "Open"){
+            if(chest == "open"){
                 Console.WriteLine("\n" + player.name + " begins pulling off the vines with ease. \nAs " + player.name + " grabs the last vine, however, they find out the hard way that it had thorns on it.");
                 player.TakeDamage(10);
                 if(player.health <= 0){
@@ -309,7 +309,7 @@ namespace WizardRPG
                 }
                 Console.WriteLine(player.name + " pries the lid off of the chest revealing a Cool Pair of Shades. \nUpon putting the glasses on, " + player.name + " feels super cool! \nFire Ball now deals more damage.");
                 player.fireSpell = 40;            
-            }else if(chest == "Ignore"){
+            }else if(chest == "ignore"){
                 Console.WriteLine("\nWhile walking by, " + player.name + " feels like the chest probably contained something very useful.");
             }
             
@@ -322,65 +322,65 @@ namespace WizardRPG
             Console.WriteLine("\nAs " + player.name + " enters the dark cave, they create a small flame in their hand for light. \nAlmost immediately after entering, the cave splits two ways: 'Left' and 'Right.");
             FGC.G();
             Console.WriteLine("Which way should " + player.name + " go?");
-            string caveChoice = Console.ReadLine();
+            string? caveChoice = Console.ReadLine().ToLower();
 
             while(true){
-                if(caveChoice == "Left" || caveChoice == "Right"){
+                if(caveChoice == "left" || caveChoice == "right"){
                     break;
                 }
-                caveChoice = Console.ReadLine();
+                caveChoice = Console.ReadLine().ToLower();
             }
 
             FGC.DB();
 
-            if(caveChoice == "Left"){ //Story choice to Hermit.
+            if(caveChoice == "left"){ //Story choice to Hermit.
                 Console.WriteLine("\n" + player.name + " takes the left corridor. \nBefore long, the tunnel opens into a small room. \nIn the center of the room, there sits a Hermit, meditating peacefully. \n" + player.name + " approaches the Hermit with caution. \nThe Hermit seems to be aware of " + player.name + "'s presence and pauses his meditation to look up and observe.");                
                 
                 if(player.fireSpell == 40){ //Hermit trade for melee damage boost if player has a Pair of Cool Shades.
                     Console.WriteLine("The Hermit notices " + player.name + "'s Pair of Cool Shades and seems interested in them. \nHe then reaches into his rags and pulls out a pendant shaped like a fist. \nHe is offering to trade it for the Pair of Cool Shades.");
                     FGC.G();
                     Console.WriteLine("Should " + player.name + " 'Accept' the offer, or 'Decline' it?");
-                    string hermitTrade01 = Console.ReadLine(); 
+                    string? hermitTrade01 = Console.ReadLine().ToLower(); 
 
                     while(true){
-                        if(hermitTrade01 == "Accept" || hermitTrade01 == "Decline"){
+                        if(hermitTrade01 == "accept" || hermitTrade01 == "decline"){
                             break;
                         }
-                        hermitTrade01 = Console.ReadLine();
+                        hermitTrade01 = Console.ReadLine().ToLower();
                     }
 
                     FGC.DB();
 
-                    if(hermitTrade01 == "Accept"){
+                    if(hermitTrade01 == "accept"){
                         Console.WriteLine("\n" + player.name + " hands the Hermit the Pair of Cool Shades and takes the pendant. \nThe Hermit puts on the Pair of Cool Shades and instantly looks bitchin'. \n" + player.name + " feels the power granted by the Pair of Cool Shades leaving, but the pendant came with its own power. \n" + player.name + " feels like a pro boxer. \nMelee damage has increased.");
                         player.fireSpell = 30;
                         player.melee = 20;                        
-                    }else if(hermitTrade01 == "Decline"){
+                    }else if(hermitTrade01 == "decline"){
                         Console.WriteLine("\nThe Hermit puts away the pendant and returns to meditating.");                        
                     }                   
                 }else{ //Hermit trade for boosted fireSpell if player does not have a Pair of Cool Shades.
                     Console.WriteLine("The Hermit looks pleased to see a new face. \nAfter examining " + player.name + ", he pulls a fiery pendant out of his rags and holds it out. \nHe wants to trade the pendant for some of " + player.name + "'s vitality.");
                     FGC.G();
                     Console.WriteLine("Should " + player.name + " 'Accept,' or 'Decline' the offer?");
-                    string hermitTrade02 = Console.ReadLine();
+                    string? hermitTrade02 = Console.ReadLine().ToLower();
 
                     while(true){
-                        if(hermitTrade02 == "Accept" || hermitTrade02 == "Decline"){
+                        if(hermitTrade02 == "accept" || hermitTrade02 == "decline"){
                             break;
                         }
-                        hermitTrade02 = Console.ReadLine();
+                        hermitTrade02 = Console.ReadLine().ToLower();
                     }
 
                     FGC.DB();
 
-                    if(hermitTrade02 == "Accept"){
+                    if(hermitTrade02 == "accept"){
                         Console.WriteLine("\n" + player.name + " takes the pendant from the Hermit, but as they do, they feel a bit of their life leaving them. \nFire Ball now deals more damage. \n" + player.name + " has taken vampyric damage.");
                         player.health = 40;
-                    }else if(hermitTrade02 == "Decline"){
+                    }else if(hermitTrade02 == "decline"){
                         Console.WriteLine("\nThe Hermit puts away the pendant and returns to meditating.");
                     }
                 }
-            }else if(caveChoice == "Right"){ //Story choice to skeleton.
+            }else if(caveChoice == "right"){ //Story choice to skeleton.
                 Console.WriteLine("\n" + player.name + " takes the corridor to the right. \nBefore long, the tunnel opens to a small room. \nIn the center of the room sits a stone coffin. \n" + player.name + " slowly approaches it and notices a plaque on top that reads 'R.I.P. The Richest Man To Ever Live.' \nJust then, the coffin lid begins to slide open. \nA skeleton wearing golden necklaces and at least fifteen rings crawls out. \nIt grimaces at " + player.name + " as they both prepare for a fight.");    
                 HitchHiker hh02 = new HitchHiker(60);
                 Press.Key();
@@ -392,18 +392,18 @@ namespace WizardRPG
                     FGC.G();
 
                     player.CurrentPlayerStats(player.health, player.spellSlots, player.healthPotions, player.manaPotions); //Displays current player stats.
-                    string action = Console.ReadLine();
+                    string? action = Console.ReadLine().ToLower();
 
                     while(true){
-                        if(action == "Fire" || action == "Melee" || action == "Health" || action == "Mana"){
+                        if(action == "fire" || action == "melee" || action == "health" || action == "mana"){
                             break;
                         } 
-                        action = Console.ReadLine();
+                        action = Console.ReadLine().ToLower();
                     }
 
                     FGC.DB();
 
-                    if(action == "Fire"){ //Possible player actions.
+                    if(action == "fire"){ //Possible player actions.
                         if(player.spellSlots > 0){
                             hh02.TakeDamage(player.fireSpell);
                             player.spellSlots--;
@@ -414,12 +414,12 @@ namespace WizardRPG
                             FGC.DB();
                             Console.WriteLine("Try drinking a mana potion.");
                         }         
-                    }else if(action == "Melee"){
+                    }else if(action == "melee"){
                         hh02.TakeDamage(player.melee);
                         Console.WriteLine("\n" + player.name + " grabs the Skeleton's beard and pulls it towards them, swiftly kicking it in its skull.");
-                    }else if(action == "Health"){                       
+                    }else if(action == "health"){                       
                         player.DrinkHealthPotion();                        
-                    }else if(action == "Mana"){                        
+                    }else if(action == "mana"){                        
                         player.DrinkManaPotion();                            
                     }   
                     
@@ -470,18 +470,18 @@ namespace WizardRPG
             {            
                 FGC.G();
                 player.CurrentPlayerStats(player.health, player.spellSlots, player.healthPotions, player.manaPotions); //Displays current player stats.
-                string action = Console.ReadLine();
+                string? action = Console.ReadLine().ToLower();
 
                 while(true){
-                        if(action == "Fire" || action == "Melee" || action == "Health" || action == "Mana"){
+                        if(action == "fire" || action == "melee" || action == "health" || action == "mana"){
                             break;
                         } 
-                        action = Console.ReadLine();
+                        action = Console.ReadLine().ToLower();
                     }
 
                 FGC.DB();
 
-                if(action == "Fire"){ //Possible player actions.
+                if(action == "fire"){ //Possible player actions.
                     if(player.spellSlots > 0){
                         player.spellSlots--;
                         Console.WriteLine("\n" + player.name + ", calling on all the power they can, forms a gigantic ball of flame and hurls it at Ex-Mortis. The orb collides with Ex-Mortis's chest, leaving him out of breath.");
@@ -492,12 +492,12 @@ namespace WizardRPG
                         FGC.DB();
                         Console.WriteLine("Try drinking a mana potion.");
                     }         
-                }else if(action == "Melee"){
+                }else if(action == "melee"){
                     Console.WriteLine("\n" + player.name + " rushes up to the Ex-Mortis, jumps into the air, and firmly kicks him between the eyes. Ex-Mortis rears back and sneers at " + player.name);
                     exMortis.TakeDamage(player.melee);
-                }else if(action == "Health"){
+                }else if(action == "health"){
                         player.DrinkHealthPotion();
-                }else if(action == "Mana"){
+                }else if(action == "mana"){
                     player.DrinkManaPotion();                            
                 }   
                     
